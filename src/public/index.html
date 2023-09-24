@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header></header>
+
+  <div class="chat">
+    <div class="message-area"></div>
+
+    <div class="interact">
+      <div class="actions">
+        <input type="text">
+        <button type="submit">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="inspect"></div>
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  let id;
+  socket.on("yourId", (socketId) => {
+    id = socketId;
+    if (!localStorage.getItem("idChat") && id) {
+      localStorage.setItem("idChat", id);
+    }
+  });
+
+  socket.on("storage", (storage) => {
+    storage.map((msg) => {
+      console.log("ID ", msg.id === window.localStorage.getItem("idChat"))
+      document.querySelector(".message-area").innerHTML += `<div class="${msg.id === window.localStorage.getItem("idChat") ? "sudo" : "normal"
+        }">${msg.msg}</div>`;
+    })
+  })
+
+  socket.on("msg", (msg) => {
+    console.log(`User ${msg.id} diz ${msg.msg}`);
+    document.querySelector(".message-area").innerHTML += `<div class="${msg.id === window.localStorage.getItem("idChat") ? "sudo" : "normal"}">${msg.msg}</div>`;
+  })
+
+  document.querySelector("button").addEventListener("click", () => {
+    if (document.querySelector("input").value) {
+      socket.emit("newMSG", { id: window.localStorage.getItem("idChat"), msg: document.querySelector("input").value })
+      document.querySelector(".message-area").innerHTML += `<div class="sudo">${document.querySelector("input").value}</div>`;
+      document.querySelector("input").value = "";
+    }
+  })
+
+</script>
+
+</html>

@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 0;
+  font-family: Arial, sans-serif; /* Substitua 'Arial' pela fonte desejada */
+}
+
+header {
+  height: 90%;
+  width: 5%;
+  background-color: #121520;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.chat {
+  background: #1a202f;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.chat .message-area {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column; /* Inverte a ordem das mensagens */
+}
+
+.chat .interact {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  gap: 5px;
+}
+
+.chat .interact .actions {
+  width: 100%;
+  height: 100%;
+  background-color: #161c2b;
+  display: flex;
+  align-items: center;
+}
+
+.chat .interact .actions input {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background-color: #161c2b;
+  color: #fff;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.chat .interact .actions button {
+  width: 7rem;
+  border: 0;
+  border-radius: 20px;
+  background-color: #161c2b;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.inspect {
+  background: #121520;
+  width: 20%;
+  height: 90%;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.sudo {
+  right: 0;
+  background: linear-gradient(45deg, #f702ee, #8f00ef);
+  color: #fff;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 70%; /* Reduz a largura máxima */
+  text-align: right; /* Alinha o texto à direita */
+}
+
+.normal {
+  left: 0;
+  background: #161c2b;
+  color: #fff;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 70%; /* Reduz a largura máxima */
+  text-align: left; /* Alinha o texto à esquerda */
+}
